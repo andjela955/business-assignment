@@ -35,6 +35,15 @@ public class ApiExceptionHandler {
                 .body(new ApiError("Internal error happened."));
     }
 
+    @ExceptionHandler(InvalidInputException.class)
+    public ResponseEntity<ApiError> handleInvalidInputException(HttpServletRequest request, InvalidInputException e) {
+        logger.error("InvalidInputException {}\n", request.getRequestURI(), e);
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new ApiError(e.getMessage()));
+    }
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor

@@ -1,6 +1,6 @@
 package com.search.business;
 
-import static com.search.business.rest.Common.BUSINESS_BASE_PATH;
+import static com.search.business.rest.RestUtil.BUSINESS_BASE_PATH;
 import static io.restassured.RestAssured.get;
 import static org.hamcrest.Matchers.notNullValue;
 
@@ -35,8 +35,16 @@ public class BusinessIntegrationTests {
     }
 
     @Test
-    public void getBusinessInfo_whenNonExistentId_notFound() {
+    public void getBusinessInfo_whenInvalidLengthId_notFound() {
         get(PATH + "invalidId")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.BAD_REQUEST.value());
+    }
+
+    @Test
+    public void getBusinessInfo_whenNonExistentId_notFound() {
+        get(PATH + "GXvPAor1ffNffF0f5PTGfw")
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.NOT_FOUND.value());
