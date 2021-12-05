@@ -11,6 +11,6 @@ public class BusinessInfoService {
     private final OpenHoursApi openHoursApi;
 
     public BusinessInfo getBusinessInfo(String businessId) {
-        return openHoursApi.getBusinessInfo(businessId.trim());
+        return openHoursApi.getBusinessInfo(businessId);
     }
 }

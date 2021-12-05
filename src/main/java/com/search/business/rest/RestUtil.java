@@ -14,7 +14,7 @@ public final class RestUtil {
     public static final int ID_LENGTH = 22;
 
     public static void checkId(String id) {
-        if (id.length() != ID_LENGTH) {
+        if (id.trim().length() != ID_LENGTH) {
             throw new InvalidInputException(format("Invalid businessId length. Length must: %s.", ID_LENGTH));
         }
     }
